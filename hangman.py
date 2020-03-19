@@ -41,6 +41,10 @@ class hangman :
                 
             else :
                 letter = input('Guess Letter -> ').upper()
+                if not letter. isalpha() :
+                    print("\n Please Enter a alphabet \n")
+                    continue
+                    
                 if (letter in word) and (letter not in word_guess) :
                     
                     for x in range(len(word)) :
@@ -68,6 +72,8 @@ class hangman :
                         break
 
                 self.guess = ''.join(word_guess)
+                
+           
 
     def guess_word(self,man) :
         wd = input('Enter word -> ').upper()
