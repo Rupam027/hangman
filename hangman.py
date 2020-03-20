@@ -18,6 +18,9 @@ class hangman() :
 
 
     def start(self):
+        
+        os.system('color b1')
+        playsound.playsound('Twinkle-sound-effect.mp3')
 
         word = self.word
         level = 0 
@@ -52,11 +55,13 @@ class hangman() :
                 
             else :
                 letter = input('Guess Letter -> ').upper()
+                
                 if not letter. isalpha() :
                     print("\n Please Enter a alphabet \n")
                     continue
                     
                 if (letter in word) and (letter not in word_guess) :
+                    
                     
                     for x in range(len(word)) :
                         if word[x] == letter :
@@ -66,20 +71,27 @@ class hangman() :
                     for x in word_guess :
                         print(x , end = " ")
                     print()
+                    playsound.playsound('applause4.mp3')
+                    
 
                 elif letter in word_guess :
-                    print(f"you have already filled the letter {letter} wherever possible")
+                    print(f"\nyou have already filled the letter {letter} wherever possible\n")
+                    playsound.playsound('fuck.mp3')
 
                 else :
                     level+=1
+                    os.system('color c0')
+                    os.system('color b1')
+                    
                     print(f"WRONG GUESS. HANG LEVEL : {level}\n")
                     for i in man[:level:] :
                         print(i)
                     print("\n")
+                    playsound.playsound('boo2.mp3')
                     
                     
                     if level == 7:
-                        print("GAME OVER")
+                        print("\n\t\t\tGAME OVER")
                         break
 
                 self.guess = ''.join(word_guess)
@@ -90,12 +102,18 @@ class hangman() :
         wd = input('Enter word -> ').upper()
         if wd == self.word :
             self.guess = wd
+            os.system('color 9e')
+            print('Bingo!! You guessed it right')
+            playsound.playsound('applause4.mp3')
         else :
             self.guess = wd
+            os.system('color c0')
             print('Oops ! You guessed it wrong. You lost all your chances')
+            
             for i in man :
                 print(i )
             print("\n")
+            playsound.playsound('boo2.mp3')
             
             print("Game Over")
             
@@ -106,24 +124,37 @@ class hangman() :
     def result(self) :
         print("YOUR GUESS -> ", self.guess ,"\n")
         print("ORIGINAL WORD -> ",self.word ,"\n")
-
+            
         if self.guess == self.word :
-            print(f"CONGRATS {self.opponent}! YOU ARE THE WINNER")
+            os.system('color 9e')
+            
+            
+            print(f"\nCONGRATS {self.opponent}! YOU ARE THE WINNER\n")
+            playsound.playsound('cheer.mp3')
         else :
-            print("LOST")
+            os.system('color c0')
+            print("\nLOST\n")
+            playsound.playsound('lost.mp3')
+            
 
     def __del__(self) : 
-        print("\nBye ! Have a Nice Day\n.Thanks for playing ! Hope yoy enjoyed")
+        print("\nBye ! Have a Nice Day\n Thanks for playing ! Hope yoy enjoyed\n")
         input("Press Enter to Quit")
 		
         
 import getpass
 import os
+import playsound
+
 if __name__ == '__main__' :
 
 
-    print('HANGMAN    v0.0.1\nDeveloped By Devops Foundation\n')
-
+    print('\t\t\tHANGMAN    v0.0.1   (Developed By Devops Foundation)\n')
+    
+    print('\t\t\t    WELCOME ')
+    playsound.playsound('welcome.mp3')
+    
+    
     name = input('Enter word setter name -> ').upper()
     opponent = input('Enter opponent name -> ').upper()
 
@@ -135,10 +166,23 @@ if __name__ == '__main__' :
 
 
     os.system('cls')
+    
+    
+    
 
-
-    input("\n PRESS ENTER TO START\n")
+    input("\n\t\t\t PRESS ENTER TO START\n")
+    
+    
+    
+   
+    
     obj.start()
+    
+    input('Press enter to proceed')
+    
+    
+    os.system('cls')
+    
     obj.result()
 
 
